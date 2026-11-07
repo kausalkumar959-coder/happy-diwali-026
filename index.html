@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Happy Diwali</title>
+    <style>
+        :root {
+            --bg: #14081f;
+            --fg: #fff3d6;
+            --glow: #ffb703;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            min-height: 100%;
+            background: radial-gradient(circle at 50% 40%, #2b1250, var(--bg) 70%) fixed
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--fg);
+            font-family: Georgia, "Times New Roman", serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px
+        }
+
+        /* jhilmil taare (sirf CSS) */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: .9;
+            background-image: radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+                radial-gradient(1px 1px at 90px 70px, #ffe8a3, transparent),
+                radial-gradient(1.5px 1.5px at 150px 120px, #fff, transparent),
+                radial-gradient(1px 1px at 50px 160px, #ffd166, transparent);
+            background-size: 200px 200px;
+            animation: star 3.5s ease-in-out infinite alternate
+        }
+
+        @keyframes star {
+            from {
+                opacity: .3
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* upar uthte diye */
+        .fl {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1
+        }
+
+        .fl i {
+            position: absolute;
+            bottom: -40px;
+            font-style: normal;
+            font-size: 22px;
+            opacity: 0;
+            animation: rise 9s linear infinite
+        }
+
+        .fl i:nth-child(1) {
+            left: 6%;
+            animation-delay: 0s
+        }
+
+        .fl i:nth-child(2) {
+            left: 24%;
+            animation-delay: 2.5s;
+            animation-duration: 11s
+        }
+
+        .fl i:nth-child(3) {
+            left: 45%;
+            animation-delay: 5s
+        }
+
+        .fl i:nth-child(4) {
+            left: 63%;
+            animation-delay: 1.2s;
+            animation-duration: 12s
+        }
+
+        .fl i:nth-child(5) {
+            left: 80%;
+            animation-delay: 3.8s
+        }
+
+        .fl i:nth-child(6) {
+            left: 93%;
+            animation-delay: 6.5s;
+            animation-duration: 10s
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(.8);
+                opacity: 0
+            }
+
+            15% {
+                opacity: .85
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(1.1) rotate(15deg);
+                opacity: 0
+            }
+        }
+
+        /* chamakta title */
+        h1 {
+            font-size: clamp(1.4rem, 6.5vw, 2.3rem);
+            margin: 6px 0;
+            background: linear-gradient(90deg, #ffb703, #fff3d6, #ff6b35, #ffb703);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            filter: drop-shadow(0 0 12px #ffb70388);
+            animation: shine 5s linear infinite
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 300% 0
+            }
+        }
+
+        /* naam box + button */
+        .f {
+            display: flex;
+            gap: 6px;
+            margin: 6px 0 10px
+        }
+
+        input {
+            padding: 9px 12px;
+            border-radius: 10px;
+            border: 1px solid #ffb70388;
+            background: #ffffff14;
+            color: var(--fg);
+            font-size: 16px;
+            width: 170px;
+            transition: box-shadow .2s, border-color .2s
+        }
+
+        input:focus {
+            outline: 0;
+            border-color: var(--glow);
+            box-shadow: 0 0 0 3px #ffb70344, 0 0 16px #ffb70366
+        }
+
+        button {
+            padding: 9px 14px;
+            border-radius: 10px;
+            border: 0;
+            background: var(--glow);
+            color: #2b1250;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: transform .15s, box-shadow .15s
+        }
+
+        button:hover {
+            box-shadow: 0 0 16px #ffb703aa;
+            transform: translateY(-1px)
+        }
+
+        button:active {
+            transform: scale(.96)
+        }
+
+        canvas {
+            cursor: pointer;
+            max-width: 100%;
+            filter: drop-shadow(0 0 20px #ffb70355)
+        }
+
+        /* shayari card */
+        .s {
+            max-width: 420px;
+            margin: 10px 0;
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid #ffb70344;
+            background: linear-gradient(160deg, #ffffff1a, #ffffff08);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            font-style: italic;
+            line-height: 1.7;
+            white-space: pre-line;
+            color: #ffe8a3;
+            box-shadow: 0 8px 30px #0006
+        }
+
+        .s:empty {
+            display: none
+        }
+
+        .s.in {
+            animation: up .8s ease both
+        }
+
+        @keyframes up {
+            from {
+                opacity: 0;
+                transform: translateY(14px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        small {
+            opacity: .65
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+
+            *,
+            *::before {
+                animation: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fl"><i>🪔</i><i>✨</i><i>🪔</i><i>✨</i><i>🪔</i><i>✨</i></div>
+    <h1 id="t">Happy Diwali! 🪔</h1>
+    <div class="f">
+        <input id="n" maxlength="20" placeholder="Naam likho..." autocomplete="off">
+        <button id="b">search</button>
+    </div>
+    <canvas id="c"></canvas>
+    <p class="s" id="s"></p>
+    <small>Naam likho, Dikhao dabao aur shayari paao 🪔 · Rangoli pe tap karke rang badlo 🎨</small>
+    <script>
+        var C = document.getElementById("c"), x = C.getContext("2d");
+        var S, dpr, pi = 0, N = 12, t0 = performance.now();
+        var P = [["#ff4d6d", "#ffb703", "#ffd166", "#06d6a0", "#9b5de5"],
+        ["#ff6b35", "#f7c59f", "#ffe8a3", "#00c2c2", "#e0407a"],
+        ["#f72585", "#ffd60a", "#4cc9f0", "#b5179e", "#ff9e00"]];
+        function size() {
+            S = Math.min(innerWidth - 24, 480); dpr = window.devicePixelRatio || 1;
+            C.width = C.height = S * dpr; C.style.width = C.style.height = S + "px";
+        }
+        size(); addEventListener("resize", size);
+
+        function ring(n, off, fn) { for (var i = 0; i < n; i++) { x.save(); x.rotate(off + i * 2 * Math.PI / n); fn(); x.restore(); } }
+        function petal(r, len, w, col) {
+            x.beginPath(); x.moveTo(r, 0);
+            x.quadraticCurveTo(r + len * .5, w, r + len, 0); x.quadraticCurveTo(r + len * .5, -w, r, 0);
+            x.fillStyle = col; x.fill();
+        }
+        function dot(r, rad, col) { x.beginPath(); x.arc(r, 0, rad, 0, 7); x.fillStyle = col; x.fill(); }
+
+        function draw(now) {
+            var el = now - t0, p = Math.min(1, el / 4000), c = P[pi], h = Math.PI / N;
+            x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, S, S);
+            x.translate(S / 2, S / 2); x.scale(S / 2.1, S / 2.1);
+            var L = [
+                function () { dot(0, .07, c[1]); dot(0, .035, c[0]); },
+                function () { ring(N, 0, function () { petal(.08, .14, .09, c[0]); }); },
+                function () { ring(N, h, function () { petal(.1, .22, .08, c[3]); }); },
+                function () { ring(N * 2, 0, function () { dot(.4, .017, c[2]); }); },
+                function () { ring(N, 0, function () { petal(.42, .17, .1, c[4]); dot(.63, .02, c[1]); }); },
+                function () {
+                    ring(N, h, function () {
+                        x.beginPath(); x.moveTo(.5, 0); x.lineTo(.56, .05);
+                        x.lineTo(.63, 0); x.lineTo(.56, -.05); x.closePath(); x.fillStyle = c[1]; x.fill();
+                    });
+                },
+                function () { ring(N * 2, 0, function () { petal(.67, .08, .04, c[2]); }); },
+                function () {
+                    ring(N, 0, function () {
+                        x.beginPath(); x.ellipse(.84, 0, .05, .034, 0, 0, 7); x.fillStyle = "#ff9f1c"; x.fill();
+                        var f = .018 + .004 * Math.sin(el / 120 + x.getTransform().e);
+                        x.beginPath(); x.ellipse(.89, 0, .04, f, 0, 0, 7); x.fillStyle = "#ffe066"; x.fill();
+                    });
+                },
+                function () { ring(N * 4, 0, function () { dot(.96, .011, c[0]); }); }
+            ];
+            for (var k = 0; k < L.length; k++) {
+                var a = Math.max(0, Math.min(1, p * L.length - k)); if (a <= 0) continue;
+                x.save(); x.globalAlpha = a; x.rotate((k % 2 ? 1 : -1) * el / 9000);
+                var s = .6 + .4 * a; x.scale(s, s);
+                x.shadowColor = c[k % 5]; x.shadowBlur = 10; L[k](); x.restore();
+            }
+            requestAnimationFrame(draw);
+        }
+        requestAnimationFrame(draw);
+
+        /* ---------- Shayari ---------- */
+        var SH = [
+            {
+                h: "दीयों की रौशनी से आँगन जगमगाए,\nख़ुशियों की बारिश हर दिल में आए,\nरंगोली के रंगों-सा हो जीवन आपका,\nहर दिन दिवाली-सा रौशन हो जाए।",
+                e: "May lamps of light make your home aglow,\nMay rains of joy on every heart flow,\nMay life be as bright as rangoli hues,\nMay every day be Diwali, and good news."
+            },
+            {
+                h: "जलते दीयों की क़तार में सपने सजें,\nमिठास घुले हर बात में आपकी,\nलक्ष्मी जी के क़दम पड़ें आपके घर में,\nसुख-समृद्धि रहे हर रात में आपकी।",
+                e: "May dreams be lit in rows of glowing lamps,\nMay sweetness fill each word you say,\nMay Goddess Lakshmi bless your home,\nAnd prosperity stay, night and day."
+            },
+            {
+                h: "अँधेरा कितना भी हो, एक दीया काफ़ी है,\nउम्मीद की लौ जलती रहे, इतना ही काफ़ी है,\nआपके घर-आँगन में बस ख़ुशियाँ रहें,\nशुभ दीपावली, दिल से इतना ही काफ़ी है।",
+                e: "However deep the dark, one small lamp is enough,\nLet hope’s flame burn on, through smooth and rough,\nMay only joy fill every home and heart,\nHappy Diwali, a warm and glowing start."
+            },
+            {
+                h: "फुलझड़ी-सी हँसी हो, अनार-सा जोश हो,\nहर मोड़ पे कामयाबी, हर पल में होश हो,\nमिठाई-सी मीठी हो ज़िंदगी आपकी,\nदिवाली की रौशनी में दिल मदहोश हो।",
+                e: "Laughter like sparklers, spirit like fireworks bright,\nSuccess at every turn, and joy in every sight,\nLife as sweet as mithai, may it always be,\nLost in Diwali’s glow, happy and carefree."
+            }
+        ];
+        var si = 0, nm = "";
+        function showShayari() {
+            var s = document.getElementById("s");
+            if (!nm) { s.textContent = ""; return; }
+            s.textContent = nm + " के नाम का एक दीया जल गया 🪔\n\n" + SH[si].h + "\n\n" + SH[si].e;
+            s.classList.remove("in"); void s.offsetWidth; s.classList.add("in");
+        }
+
+        /* ---------- Naam search ---------- */
+        function setName(v) {
+            nm = v.replace(/[^A-Za-z]/g, "").slice(0, 20);
+            document.getElementById("t").textContent = nm ? nm + ", Happy Diwali! 🪔" : "Happy Diwali! 🪔";
+            try { location.hash = nm; } catch (e) { }
+            si = Math.floor(Math.random() * SH.length);
+            showShayari();
+            t0 = performance.now();
+        }
+        var inp = document.getElementById("n");
+        document.getElementById("b").addEventListener("click", function () { setName(inp.value); });
+        inp.addEventListener("keydown", function (e) { if (e.key === "Enter") setName(inp.value); });
+
+        /* tap pe nayi rangoli + nayi shayari */
+        C.addEventListener("click", function () {
+            pi = (pi + 1) % P.length; N = [8, 10, 12, 16][Math.floor(Math.random() * 4)];
+            si = (si + 1) % SH.length; showShayari(); t0 = performance.now();
+        });
+
+        /* link se naam: ...#Rahul */
+        var h0 = decodeURIComponent((location.hash || "").slice(1));
+        if (h0) { inp.value = h0.replace(/[^A-Za-z]/g, ""); setName(inp.value); } else { showShayari(); }
+    </script>
+</body>
+
+</html>
